@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--  Combo Demo  -->
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl" >
+<p>Looping with objects:</p>
+<ul>
+  <li ng-repeat="x in ComboGrid">
+  {{ x.ObjA.name + ', ' + x.ObjA.country}}</li>
+</ul>
+<ul>
+  <li ng-repeat="x in ComboGrid">
+  {{ x.ObjB.name + ', ' + x.ObjB.country}}</li>
+</ul>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+  var names=[{name:'Jani',country:'Norway'},
+             {name:'Hege',country:'Sweden'},
+             {name:'Kai',country:'Denmark'}     
+            ];
+  var names2=[{name:'Jani2',country:'Norway2'},
+              {name:'Hege2',country:'Sweden2'},
+              {name:'Kai2',country:'Denmark2'},     
+              {name:'Yuri2',country:'Ukr2'},
+              {name:'Marek2',country:'Pl2'}
+             ];
+    $scope.ComboGrid = [];
+    var ComboLength = names.length > names2.length ? names.length : names2.length;
+    for (var n = 0; n < ComboLength ; n++) {
+      $scope.ComboGrid[n] = {"ObjA":names[n], "ObjB":names2[n]};
+    }
+});
+</script>
+</body>
+</html>
